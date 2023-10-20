@@ -24,7 +24,7 @@ pub const Timer = struct {
             // callconv(.C) c style call convention
             // callback is a c style function which matches uv_timer_start param signature
             pub fn callback(handle: [*c]c.uv_timer_t) callconv(.C) void {
-                // uv_tiemr_start will call callback with timer,
+                // uv_timer_start will call callback with timer,
                 // then we need to override the struct timer field and call the user's cb function
                 var newTimer: Timer = .{ .handle = handle };
                 @call(.always_inline, cb, .{&newTimer});
