@@ -253,5 +253,7 @@ pub fn buildLibuv(
         }, flags.items);
     }
 
+    b.installArtifact(lib);
+
     return lib;
 }
