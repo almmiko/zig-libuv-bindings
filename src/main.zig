@@ -21,5 +21,5 @@ pub fn main() !void {
         }
     }).cb, 200, 1000);
 
-    try loop.run();
+    try loop.run(.default);
 }
