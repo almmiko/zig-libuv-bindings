@@ -42,6 +42,14 @@ pub const Timer = struct {
     pub fn stop(self: Timer) !void {
         try errors.convertErr(c.uv_timer_stop(self.handle));
     }
+
+    pub fn setData(self: Timer, data: ?*anyopaque) void {
+        c.uv_handle_set_data(@ptrCast(self.handle), data);
+    }
+
+    pub fn getData(self: Timer, comptime dataType: type) ?*dataType {
+        return if (c.uv_handle_get_data(@ptrCast(self.handle))) |ptr| @ptrCast(@alignCast(ptr)) else null;
+    }
 };
 
 // test "Timer" {

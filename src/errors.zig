@@ -92,7 +92,9 @@ pub const Error = error{
 pub fn convertErr(r: c_int) Error!void {
     if (r >= 0) return;
 
-    std.debug.print("UV_ERROR: {}\n", .{r});
+    if (r != -16) {
+        std.debug.print("UV_ERROR: {}\n", .{r});
+    }
 
     return switch (r) {
         c.UV_E2BIG => Error.E2BIG,
